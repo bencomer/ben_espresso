@@ -3589,17 +3589,19 @@ svn co --username anonymous http://qeforge.qe-forge.org/svn/q-e/branches/espress
             return self.forces.copy()
         else:
             return self.forces
-    def todict(self,return_default=True):
+    def todict_(self,return_default=True):
         if return_default==True:
-            variables = {}
+            variables = OrderedDict()
             for item in self.defaults.keys():
                 variables[item]= getattr(self,item)
+            del variables['atoms']
             return variables
         else:
-            nondefault_variables = {}
+            nondefault_variables = OrderedDict()
             for item in self.defaults.keys():
                 if self.defaults[item] == getattr(self,item):
                     pass
                 else:
                     nondefault_variables[item]= getattr(self,item)
+                del nondefault_variables['atoms']
             return nondefault_variables

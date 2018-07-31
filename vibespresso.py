@@ -81,4 +81,8 @@ class vibespresso(Calculator):
 
     def get_version(self):
         return '0.1'
-
+    
+    def get_dipole_moment(self,charge_type='DDEC6'):
+        """ function to calculate the total dipole of a system in chargemol"""
+        dipole = self.esp.get_dipole_moment()
+        return dipole 
